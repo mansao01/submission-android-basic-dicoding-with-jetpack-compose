@@ -1,5 +1,6 @@
 package com.example.genshinapp
 
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -13,6 +14,7 @@ import androidx.navigation.navArgument
 import com.example.genshinapp.ui.navigation.Screen
 import com.example.genshinapp.ui.screen.detail.DetailScreen
 import com.example.genshinapp.ui.screen.home.HomeScreen
+import com.example.genshinapp.ui.screen.profile.ProfileScreen
 
 
 @Composable
@@ -25,14 +27,19 @@ fun GenshinApp(
 
     NavHost(navController = navController, startDestination = Screen.Home.route) {
         composable(Screen.Home.route) {
-            HomeScreen(navigateToDetail = { characterId ->
-                navController.navigate(Screen.Detail.createRoute(characterId))
-            })
+            HomeScreen(
+                navigateToDetail = { characterId ->
+                    navController.navigate(Screen.Detail.createRoute(characterId))
+                },
+                navigateToProfile = { navController.navigate(Screen.Profile.createRoute()) })
+        }
+        composable(Screen.Profile.route) {
+            ProfileScreen()
         }
         composable(Screen.Detail.route, arguments = listOf(navArgument("characterId") {
             type = NavType.IntType
         })) {
-            val id = it.arguments?.getInt("characterId")?: -1
+            val id = it.arguments?.getInt("characterId") ?: -1
             DetailScreen(playerId = id, navigateBack = {
                 navController.navigateUp()
             })

@@ -1,7 +1,6 @@
 package com.example.genshinapp.ui.screen.detail
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,7 +25,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.example.genshinapp.ViewModelFactory
 import com.example.genshinapp.di.Injection
-import com.example.genshinapp.ui.common.TextCenter
+import com.example.genshinapp.ui.component.TextCenter
 import com.example.genshinapp.ui.common.UiState
 import com.example.genshinapp.ui.component.ElementText
 
@@ -83,12 +82,9 @@ fun DetailContent(
             contentDescription = null,
             modifier = Modifier
                 .clickable { onBackClick() })
-
-
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
             AsyncImage(
                 model = picture,
                 contentDescription = null,
