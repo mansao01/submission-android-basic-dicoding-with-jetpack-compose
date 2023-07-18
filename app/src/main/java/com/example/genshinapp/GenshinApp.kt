@@ -34,7 +34,11 @@ fun GenshinApp(
                 navigateToProfile = { navController.navigate(Screen.Profile.createRoute()) })
         }
         composable(Screen.Profile.route) {
-            ProfileScreen()
+            ProfileScreen(
+                navigateBack = {
+                    navController.navigateUp()
+                }
+            )
         }
         composable(Screen.Detail.route, arguments = listOf(navArgument("characterId") {
             type = NavType.IntType
